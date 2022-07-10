@@ -1,2 +1,2 @@
 # Customa
-A constomer managing system written in Go.
+A customer managing system written in Go.
