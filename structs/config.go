@@ -7,4 +7,10 @@ type Config struct {
 		Passwd       string
 		DatabaseName string
 	}
+	Log struct {
+		File          string
+		ConsoleOutput bool
+		WriteError    bool
+		WriteInfo     bool
+	}
 }

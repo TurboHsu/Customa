@@ -8,7 +8,9 @@ import (
 	"github.com/TurboHsu/Customa/structs"
 )
 
-func Read(fileAddr string) (structs.Config, structs.ErrMsg) {
+var Config structs.Config
+
+func Read(fileAddr string) structs.ErrMsg {
 	var ret structs.Config
 	var error structs.ErrMsg = structs.ErrMsg{IsErr: false, Msg: ""}
 
@@ -17,14 +19,14 @@ func Read(fileAddr string) (structs.Config, structs.ErrMsg) {
 	if err != nil {
 		error.IsErr = true
 		error.Msg = err.Error()
-		return ret, error
+		return error
 	}
 	defer file.Close()
 	cfg, err := ioutil.ReadAll(file)
 	if err != nil {
 		error.IsErr = true
 		error.Msg = err.Error()
-		return ret, error
+		return error
 	}
 
 	//Unmarshal the config file.
@@ -32,7 +34,8 @@ func Read(fileAddr string) (structs.Config, structs.ErrMsg) {
 	if err != nil {
 		error.IsErr = true
 		error.Msg = err.Error()
-		return ret, error
+		return error
 	}
-	return ret, error
+	Config = ret
+	return error
 }
